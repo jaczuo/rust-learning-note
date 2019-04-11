@@ -3,10 +3,13 @@
 Rust语言学习笔记
 
 ### 先从示例开始
+
+```rust
 main.rs
 fn main() {
     println!("Hello, world!");
 }
+```
 
 编译方法 `rustc main.rs `
 > ! 意味着调用的是宏而不是普通函数 
@@ -29,7 +32,7 @@ fn main() {
 
 1. 变量和常量
 
-    :: let::声明变量，变量声明后将不能改变，除非通过 ::mut::
+    `let`声明变量，变量声明后将不能改变，除非通过 `mut`
     ```rust
     fn main() {
         let x = 5;
@@ -42,7 +45,7 @@ fn main() {
         println!("The value of x is: {}", x);
     }
     ```
-    声明常量使用 ::const:: 关键字而不是:: let::，并且 必须 注明值的类型。
+    声明常量使用 `const` 关键字而不是 `let`，并且 必须 注明值的类型。
     const MAX_POINTS: u32 = 100_000;
 2. 数据类型
     除了常见的整型，浮点型，布尔型之外，还有元组类型。
@@ -84,13 +87,13 @@ fn plus_one(x: i32) -> i32 {
 
 - 函数声明的关键字 `fn`
 - 传参 `x: i32` x 为变量名， i32 为类型, 传参时**必须**声明参数类型
-- 返回值 仅制定类型 `-> i32` 结尾处的语句 `x + 1` 如果加上分号将不能正确执行，这里有语句和表达式的区别
+- 返回值 仅指定类型 `-> i32` 结尾处的语句 `x + 1` 如果加上分号将不能正确执行，这里有语句和表达式的区别
 - Rust语句不返回值，表达式可以
 - 使用 `return` 关键字可以提前返回
 
 ### 控制流
 
-- **if/else**
+#### if/else
 
 ```rust
 fn main() {
@@ -104,4 +107,51 @@ fn main() {
     println!("The value of number is: {}", number);
 }
 ```
-**if/else**关键字之后不需要添加括号，也不需要像Python那样加冒号
+
+- **if/else**关键字之后不需要添加括号，也不需要像Python那样加冒号
+- **if** 是一个表示式，因此具有返回值。代码块的值是其最后一个表达式的值
+- 每个分支的返回值类型必须相同
+
+#### loop
+
+无条件执行，可以通过 `break` 退出
+
+```rust
+fn main() {
+    loop {
+        println!("again!");
+    }
+}
+```
+
+#### while
+
+循环条件不加括号
+
+```rust
+fn main() {
+    let mut number = 3;
+
+    while number != 0 {
+        println!("{}!", number);
+
+        number = number - 1;
+    }
+
+    println!("LIFTOFF!!!");
+}
+```
+
+#### for
+
+感受下 `Rust` 风格的for循环
+
+```rust
+fn main() {
+    let a = [10, 20, 30, 40, 50];
+
+    for element in a.iter() {
+        println!("the value is: {}", element);
+    }
+}
+```
